@@ -57,6 +57,53 @@ public class GameModel {
         playerTurn = nextPlayer();
     }
 
+    public Boolean isFinished(){
+        for(int i=0; i<13; i++){
+            if(canPlace(i)==true)
+                return false;
+        }
+        return true;
+    }
+
+    public Boolean canPlace(int i){
+        if(!chairs[i].get().equals(Chair.NONE)) {return false;}
+        int prevchair = i-1;
+        int nextchair = i+1;
+        if(i == 0){prevchair = 13;}
+        if(i == 13){nextchair = 0;}
+        if(chairs[prevchair].get().equals(Chair.NONE) && chairs[nextchair].get().equals(Chair.NONE)){
+            return true;
+        }
+        if(playerTurn.equals(Player.ONE)){
+            // tole jobbra balra ugyanaz
+            if(chairs[prevchair].get().equals(Chair.GIRL) && chairs[nextchair].get().equals(Chair.GIRL)){
+                return true;
+            }
+            //tole jobbra vagy balra ugyanaz, masik oldalon meg semmi
+            if(chairs[prevchair].get().equals(Chair.GIRL) && chairs[nextchair].get().equals(Chair.NONE)){
+                return true;
+            }
+            if(chairs[prevchair].get().equals(Chair.NONE) && chairs[nextchair].get().equals(Chair.GIRL)){
+                return true;
+            }
+        }
+
+        if(playerTurn.equals(Player.TWO)){
+            // tole jobbra balra ugyanaz
+            if(chairs[prevchair].get().equals(Chair.BOY) && chairs[nextchair].get().equals(Chair.BOY)){
+                return true;
+            }
+            //tole jobbra vagy balra ugyanaz, masik oldalon meg semmi
+            if(chairs[prevchair].get().equals(Chair.BOY) && chairs[nextchair].get().equals(Chair.NONE)){
+                return true;
+            }
+            if(chairs[prevchair].get().equals(Chair.NONE) && chairs[nextchair].get().equals(Chair.BOY)){
+                return true;
+            }
+        }
+        return false;
+    }
+
     /**
      * toString metodus az olvashato kimenetert
      * @return visszaadja a szekeken talalhato Chair ertekeket
