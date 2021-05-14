@@ -7,7 +7,6 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="655.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.LaunchController">
    <children>
       <Label alignment="CENTER" layoutX="229.0" layoutY="50.0" prefHeight="31.0" prefWidth="197.0" text="Chair Game" textAlignment="CENTER" textFill="#1432b5" wrapText="true">
@@ -15,12 +14,12 @@
             <Font name="DejaVu Serif Bold" size="26.0" />
          </font>
       </Label>
-      <Label alignment="CENTER" layoutX="283.0" layoutY="200.0" prefHeight="31.0" prefWidth="89.0" text="Username">
+      <Label alignment="CENTER" layoutX="174.0" layoutY="200.0" prefHeight="31.0" prefWidth="89.0" text="Username1">
          <font>
             <Font size="15.0" />
          </font>
       </Label>
-      <TextField fx:id="userName" layoutX="242.0" layoutY="230.0" />
+      <TextField fx:id="userName1" layoutX="133.0" layoutY="231.0" />
       <Label fx:id="error" alignment="CENTER" contentDisplay="TOP" layoutX="243.0" layoutY="254.0" prefHeight="16.0" prefWidth="170.0" textFill="RED" />
       <Button fx:id="startButton" layoutX="277.0" layoutY="302.0" mnemonicParsing="false" onAction="#start" prefHeight="31.0" prefWidth="102.0" text="Start">
          <font>
@@ -39,5 +38,11 @@
             <Button fx:id="menu" layoutX="254.0" layoutY="261.0" mnemonicParsing="false" onAction="#backToMenu" text="Menu" />
          </children>
       </Pane>
+      <TextField fx:id="userName2" layoutX="341.0" layoutY="231.0" />
+      <Label alignment="CENTER" layoutX="382.0" layoutY="200.0" prefHeight="31.0" prefWidth="89.0" text="Username2">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
    </children>
 </Pane>
