@@ -1,10 +1,55 @@
 package controllers;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Label;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.ListView;
+import javafx.stage.Stage;
+import lombok.extern.slf4j.Slf4j;
+import results.DataHandler;
+import results.GameResult;
 
+import java.io.IOException;
+import java.util.List;
+
+@Slf4j
 public class FinishController {
+    ObservableList list = FXCollections.observableArrayList();
+
     @FXML
-    private Label label;
+    ListView<String> toplistview;
+
+    @FXML
+    private Button backButton;
+
+    @FXML
+    public void initialize() {
+        List<GameResult> toptenlist = DataHandler.listResults();
+        loadData(toptenlist);
+    }
+
+    private void loadData(List<GameResult> toptenlist){
+        for(GameResult game : toptenlist){
+            String tmp = "";
+            tmp = game.getPlayer1() +" vs "+ game.getPlayer2() +" winner: "+game.getWinner() +" won as: "+ game.getWonAs() +" steps: "+ game.getSteps();
+            list.add(tmp);
+        }
+        toplistview.getItems().setAll(list);
+        System.out.println(list.size());
+    }
+
+    public void back(ActionEvent actionEvent) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("/fxml/Hello.fxml"));
+        Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+        stage.setScene(new Scene(root));
+        stage.show();
+        log.info("Loading launch scene.");
+    }
 
 }
