@@ -9,20 +9,12 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.Pane;
-import javafx.scene.layout.StackPane;
-import javafx.scene.paint.Color;
 import javafx.stage.Stage;
-import model.Chair;
 import model.GameModel;
 import model.Player;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 
 
 public class GameController {
@@ -57,7 +49,9 @@ public class GameController {
     @FXML
     private Button chair14;
     @FXML
-    private Label usernameLabel;
+    private Label usernameLabel1;
+    @FXML
+    private Label usernameLabel2;
     @FXML
     private Label playerLabel;
     @FXML
@@ -67,10 +61,17 @@ public class GameController {
     @FXML
     private Label resultLabel;
 
-    private String username;
-    public void setUsername(String username){
-        this.username = username;
-        usernameLabel.setText(username);
+    private String player1;
+    private String player2;
+    private String winner;
+    private String wonAs;
+    private int steps = 0;
+
+    public void setUsername(String player1, String player2){
+        this.player1 = player1;
+        this.player2 = player2;
+        usernameLabel1.setText(player1);
+        usernameLabel2.setText(player2);
     }
 
     @FXML
@@ -110,14 +111,19 @@ public class GameController {
             System.out.println(chairIndex);
             gameState.place(chairIndex - 1);
             setColor();
+            steps++;
             if(gameState.isFinished()){
                 doneButton.setText("Finish");
                 if(GameModel.playerTurn.equals(Player.ONE)){
+                    winner = player2;
+                    wonAs = "PlayerTWO(RED)";
                     resultLabel.setText("Player TWO wins!");
                     resultLabel.setStyle("-fx-text-fill: red;");
                     System.out.println("Player TWO wins!");
                 }
                 else {
+                    winner = player1;
+                    wonAs = "PlayerONE(BLUE)";
                     resultLabel.setText("Player ONE wins!");
                     resultLabel.setStyle("-fx-text-fill: blue;");
                     System.out.println("Player ONE wins!");
@@ -129,7 +135,10 @@ public class GameController {
     @FXML
     public void finishGame(ActionEvent actionEvent) throws IOException {
         if(!gameState.isFinished()){
-            //TODO
+            results.DataHandler.insertResults(player1, player2, winner, wonAs, steps);
+        }
+        else{
+            results.DataHandler.insertResults(player1, player2, winner, wonAs, steps);
         }
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/Finished.fxml"));
         Parent root = fxmlLoader.load();
