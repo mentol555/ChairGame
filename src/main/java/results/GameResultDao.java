@@ -12,12 +12,13 @@ public interface GameResultDao {
 
     @SqlUpdate("""
         CREATE TABLE chairgame (
+            id integer not null AUTO_INCREMENT,
             player1 varchar(255) not null,
             player2 varchar(255) not null,
-            winner varchar(255) not null,
-            wonAs varchar(255) not null,
+            winner varchar(255),
+            wonAs varchar(255),
             steps integer not null,
-            primary key (player1)
+            primary key(id)
         )
         """
     )
@@ -29,10 +30,11 @@ public interface GameResultDao {
     void deleteContents();
 
     @SqlUpdate("INSERT INTO chairgame (player1, player2, winner, wonAs, steps) VALUES (:player1, :player2, :winner, :wonAs, :steps)")
+    //@GetGeneratedKeys
     int insertGameResult(@BindBean GameResult gameResult);
 
 
-    @SqlQuery("SELECT * FROM chairgame")
+    @SqlQuery("SELECT * FROM chairgame WHERE winner is not null ORDER BY steps LIMIT 10")
     List<GameResult> listGameResults();
 
 }
