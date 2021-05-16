@@ -15,6 +15,9 @@ import lombok.extern.slf4j.Slf4j;
 
 import java.io.IOException;
 
+/**
+ * Legelso <code>FXML</code> file Controllere.
+ */
 @Slf4j
 public class LaunchController {
     @FXML
@@ -37,20 +40,34 @@ public class LaunchController {
     @FXML
     private Pane howToPlay;
 
+    /**
+     * Error dobo fuggveny.
+     */
     private void error(){
         error.setText("Please the a usernames!");
     }
 
+    /**
+     * help pane-t megjelenito fuggveny.
+     */
     @FXML
     private void help(){
         howToPlay.setVisible(true);
     }
 
+    /**
+     * vissza a menube.
+     */
     @FXML
     private void backToMenu(){
         howToPlay.setVisible(false);
     }
 
+    /**
+     * Jatekmenet fxml-t betolto fuggveny.
+     * @param actionEvent kivalto oka a fuggvenyhivasnak.
+     * @throws IOException kivetel.
+     */
     public void start(ActionEvent actionEvent) throws IOException {
         if (userName1.getText().isEmpty() || userName2.getText().isEmpty()) {
             error();

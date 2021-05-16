@@ -18,6 +18,9 @@ import results.GameResult;
 import java.io.IOException;
 import java.util.List;
 
+/**
+ * Toplistat megjelenito vegso ablak controller osztalya.
+ */
 @Slf4j
 public class FinishController {
     ObservableList list = FXCollections.observableArrayList();
@@ -28,12 +31,19 @@ public class FinishController {
     @FXML
     private Button backButton;
 
+    /**
+     * Inicializalo fuggveny.
+     */
     @FXML
     public void initialize() {
         List<GameResult> toptenlist = DataHandler.listResults();
         loadData(toptenlist);
     }
 
+    /**
+     * Toplista betolto fuggveny.
+     * @param toptenlist top 10 jatek objektumat tartalmazza.
+     */
     private void loadData(List<GameResult> toptenlist){
         for(GameResult game : toptenlist){
             String tmp = "";
@@ -44,6 +54,11 @@ public class FinishController {
         System.out.println(list.size());
     }
 
+    /**
+     * Visszalepest biztosito fuggveny.
+     * @param actionEvent Kivalto action.
+     * @throws IOException
+     */
     public void back(ActionEvent actionEvent) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("/fxml/Hello.fxml"));
         Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
