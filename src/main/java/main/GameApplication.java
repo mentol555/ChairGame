@@ -6,10 +6,16 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-import java.io.IOException;
-
+/**
+ * Jatekmenet betolesere szolgalo class.
+ */
 public class GameApplication extends Application {
 
+    /**
+     * Jatekmenet <code>FXML</code>-t betolto fuggveny.
+     * @param primaryStage parameter.
+     * @throws Exception kivetel.
+     */
     @Override
     public void start(Stage primaryStage) throws Exception{
         Parent root = FXMLLoader.load(getClass().getResource("/fxml/Hello.fxml"));
