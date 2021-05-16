@@ -3,32 +3,33 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>hu.unideb.inf</groupId>
-    <artifactId>homework-template-project</artifactId>
+    <artifactId>ChairGame</artifactId>
     <version>1.0</version>
     <packaging>jar</packaging>
     <description></description>
     <developers>
         <developer>
-            <name></name>
-            <email></email>
+            <name>Hosszú Szilárd József</name>
+            <email>szili.hosszu@yahoo.com</email>
             <organization>Faculty of Informatics, University of Debrecen</organization>
             <organizationUrl>https://inf.unideb.hu/</organizationUrl>
         </developer>
     </developers>
     <scm>
-        <developerConnection>scm:git:https://github.com/INBPM0420/homework-template-project.git</developerConnection>
+        <developerConnection>scm:git:https://github.com/mentol555/ChairGame.git</developerConnection>
     </scm>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.build.outputEncoding>UTF-8</project.build.outputEncoding>
         <maven.compiler.source>16</maven.compiler.source>
         <maven.compiler.target>16</maven.compiler.target>
-        <exec.mainClass>remove.me.RemoveThisClass</exec.mainClass>
+        <exec.mainClass>main.Main</exec.mainClass>
         <javafx.version>16</javafx.version>
         <junit.jupiter.version>5.7.1</junit.jupiter.version>
         <jacoco.version>0.8.7</jacoco.version>
         <surefire.version>3.0.0-M5</surefire.version>
         <jdbi.version>3.19.0</jdbi.version>
+        <argLine>--enable-preview</argLine>
     </properties>
     <dependencies>
         <dependency>
@@ -99,9 +100,9 @@
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>3.8.1</version>
                 <configuration>
+                    <compilerArgs>--enable-preview</compilerArgs>
                     <source>16</source>
                     <target>16</target>
-                    <compilerArgs>--enable-preview</compilerArgs>
                 </configuration>
             </plugin>
             <plugin>
@@ -147,7 +148,7 @@
                 <artifactId>maven-site-plugin</artifactId>
                 <version>3.9.1</version>
             </plugin>
-            <!--
+
             <plugin>
                 <groupId>org.jacoco</groupId>
                 <artifactId>jacoco-maven-plugin</artifactId>
@@ -160,7 +161,7 @@
                     </execution>
                 </executions>
             </plugin>
-            -->
+
             <plugin>
                 <groupId>org.openjfx</groupId>
                 <artifactId>javafx-maven-plugin</artifactId>
@@ -196,6 +197,10 @@
                         </reports>
                     </reportSet>
                 </reportSets>
+                <configuration>
+                    <source>16</source>
+                    <sourcepath>$src/main/java/</sourcepath>
+                </configuration>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -215,7 +220,7 @@
                 <artifactId>maven-surefire-report-plugin</artifactId>
                 <version>${surefire.version}</version>
             </plugin>
-            <!--
+
             <plugin>
                 <groupId>org.jacoco</groupId>
                 <artifactId>jacoco-maven-plugin</artifactId>
@@ -227,8 +232,9 @@
                         </reports>
                     </reportSet>
                 </reportSets>
+
             </plugin>
-            -->
+
         </plugins>
     </reporting>
 </project>
