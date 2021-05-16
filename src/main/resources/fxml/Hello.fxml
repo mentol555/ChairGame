@@ -27,6 +27,12 @@
          </font>
       </Button>
       <Button fx:id="helpButton" layoutX="498.0" layoutY="333.0" mnemonicParsing="false" onAction="#help" text="How to play?" />
+      <TextField fx:id="userName2" layoutX="341.0" layoutY="231.0" />
+      <Label alignment="CENTER" layoutX="382.0" layoutY="200.0" prefHeight="31.0" prefWidth="89.0" text="Username2">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
       <Pane fx:id="howToPlay" layoutX="46.0" layoutY="38.0" prefHeight="324.0" prefWidth="563.0" style="-fx-background-color: lightCyan; -fx-border-color: black;" visible="false">
          <children>
             <Text layoutX="44.0" layoutY="106.0" lineSpacing="10.0" stroke="#a11b1b" strokeType="OUTSIDE" strokeWidth="0.0" text="Adott 14 körben elhelyezett szék, valamint 7 fiú és 7 lány. Az egyik játékos a fiúkat, a másik a lányokat ülteti a székekre a játék során.  A játékosok felváltva  ültetnek le egy fiút illetve lányt egy még szabad székre, azonban nem kerülhet közvetlenül egymás mellé fiú és lány. Az utoljára lépni tudó játékos nyer." wrappingWidth="474.13916015625" />
@@ -38,11 +44,5 @@
             <Button fx:id="menu" layoutX="254.0" layoutY="261.0" mnemonicParsing="false" onAction="#backToMenu" text="Menu" />
          </children>
       </Pane>
-      <TextField fx:id="userName2" layoutX="341.0" layoutY="231.0" />
-      <Label alignment="CENTER" layoutX="382.0" layoutY="200.0" prefHeight="31.0" prefWidth="89.0" text="Username2">
-         <font>
-            <Font size="15.0" />
-         </font>
-      </Label>
    </children>
 </Pane>

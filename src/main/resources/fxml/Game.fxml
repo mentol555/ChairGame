@@ -15,7 +15,7 @@
             <Font name="Go Regular" size="18.0" />
          </font>
       </Label>
-      <Pane fx:id="floor" layoutY="7.0" prefHeight="533.0" prefWidth="640.0">
+      <Pane fx:id="floor" layoutX="-5.0" layoutY="7.0" prefHeight="533.0" prefWidth="640.0">
          <children>
             <Button fx:id="chair14" layoutX="251.0" layoutY="23.0" mnemonicParsing="false" onMouseClicked="#chairClick" prefHeight="62.0" prefWidth="59.0" style="-fx-background-radius: 40; -fx-background-insets: 0; -fx-border-radius: 40; -fx-border-color: black;" textOverrun="CLIP">
                <font>
@@ -148,6 +148,17 @@
             <Font size="15.0" />
          </font>
       </Label>
+      <Label text="Steps: " translateX="260.0" translateY="170.0">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
       <Label fx:id="usernameLabel2" layoutX="24.0" layoutY="57.0" prefHeight="23.0" prefWidth="102.0" translateX="55.0" translateY="-22.0" />
+      <Label fx:id="stepLabel" layoutX="10.0" layoutY="10.0" translateX="305.0" translateY="160.0">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <Button fx:id="resetButton" layoutX="26.0" layoutY="535.0" mnemonicParsing="false" onAction="#resetGame" text="Reset" translateY="-25.0" />
    </children>
 </Pane>
