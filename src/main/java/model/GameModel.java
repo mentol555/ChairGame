@@ -1,26 +1,36 @@
 package model;
 
 import javafx.beans.property.ReadOnlyObjectWrapper;
+import lombok.extern.slf4j.Slf4j;
 
+/**
+ * A jatekmenet <code>Modell</code>-je.
+ */
+@Slf4j
 public class GameModel {
     public static int CHAIRS_LENGTH = 14;
 
-    public static Player playerTurn;
+    public Player playerTurn;
 
-    private static ReadOnlyObjectWrapper<Chair>[] chairs = new ReadOnlyObjectWrapper[CHAIRS_LENGTH];
+    private ReadOnlyObjectWrapper<Chair>[] chairs = new ReadOnlyObjectWrapper[CHAIRS_LENGTH];
+
 
     /**
-     * Alapertelmezett allapot letrehozasa
-     * @param chairs : ReadOnlyObjectWrapper<Chair> tomb, melyben a szekek vannak reprezentalva
+     * Alapertelmezett allapot letrehozasa.
+     * @param chairs : ReadOnlyObjectWrapper<Chair> tomb, melyben a szekek vannak reprezentalva.
+     * @throws IllegalArgumentException ha nem 14-es hosszusagu a chairs tombunk.
      */
-    private void init(ReadOnlyObjectWrapper<Chair> chairs[]){
+    public void init(ReadOnlyObjectWrapper<Chair> chairs[]){
+        if(chairs.length != 14){
+            throw new IllegalArgumentException();
+        }
         for(int i=0; i<CHAIRS_LENGTH; i++){
             chairs[i] = new ReadOnlyObjectWrapper<Chair>(Chair.NONE);
         }
     }
 
     /**
-     * Alapertelmezett konstruktor
+     * Alapertelmezett konstruktor.
      */
     public GameModel(){
         playerTurn = Player.ONE;
@@ -29,34 +39,51 @@ public class GameModel {
 
     /**
      *
-     * @param i : bizonyos szek sorszama
-     * @return a szeken talalhato erteket adja vissza (NONE / BOY / GIRL)
+     * @param i : bizonyos szek sorszama.
+     * @return a szeken talalhato erteket adja vissza (NONE / BOY / GIRL).
+     * @throws IllegalArgumentException ha rossz indexre hivatkozunk.
      */
-    public static Chair getChair(int i) {
+    public Chair getChair(int i) {
+        if(i < 0 || i > 13){
+            throw new IllegalArgumentException();
+        }
         return chairs[i].get();
     }
 
     /**
-     *
-     * @return a soron kovetkezo jatekost
+     * Kovetkezo jatekost visszaado fuggveny.
+     * @return a soron kovetkezo jatekost.
      */
-    public static Player nextPlayer(){
+    public Player nextPlayer(){
         return switch(playerTurn){
             case ONE -> Player.TWO;
             case TWO -> Player.ONE;
         };
     }
 
+    /**
+     *
+     * @param i -edik poziciora ultetunk.
+     * @throws IllegalAccessError ha i nem megfelelo erteku(i<0 vagy i>13) vagy ha nem ultethetunk oda.
+     */
     public void place(int i){
+        if(i < 0 || i > 13 || canPlace(i) == false){
+            throw new IllegalArgumentException();
+        }
         chairs[i].set(
                 switch(playerTurn){
-                    case ONE -> Chair.GIRL;
-                    case TWO -> Chair.BOY;
+                    case ONE -> {log.info("Player ONE placed GIRL on chair {}",i); yield Chair.GIRL;}
+                    case TWO -> {log.info("Player TWO placed BOY on chair {}",i); yield Chair.BOY;}
                 }
         );
         playerTurn = nextPlayer();
     }
 
+    /**
+     * Megnezi hogy veget-ert e a jatszma.
+     * Akkor ert veget, ha mar nem tud leultetni az aktualis jatekos sehova se.
+     * @return true ha vege a jateknak, false ha meg nem.
+     */
     public Boolean isFinished(){
         for(int i=0; i<13; i++){
             if(canPlace(i)==true)
@@ -65,7 +92,17 @@ public class GameModel {
         return true;
     }
 
+    /**
+     * Megnezi, hogy leultethet-e az aktualis jatekos egy poziciora.
+     * @param i pozicio ahova le szeretne ultetni.
+     * @return true , ha ket ures szek koze ultetne, vagy ha ket sajat szeke koze szeretne ultetni,
+     * vagy ha az adott pozicio mellett az egyik az o szeke, a masik meg ures.
+     * false egyebkent.
+     */
     public Boolean canPlace(int i){
+        if(i < 0 || i > 13){
+            return false;
+        }
         if(!chairs[i].get().equals(Chair.NONE)) {return false;}
         int prevchair = i-1;
         int nextchair = i+1;
@@ -105,23 +142,34 @@ public class GameModel {
     }
 
     /**
-     * toString metodus az olvashato kimenetert
-     * @return visszaadja a szekeken talalhato Chair ertekeket
+     * toString metodus.
+     * @return olvashato kimenetet ad vissza.
      */
     public String toString(){
         StringBuilder sb = new StringBuilder();
         for (int i = 0; i < CHAIRS_LENGTH; i++) {
-            sb.append("CHAIR-"+(i+1)+": "+getChair(i));
-            sb.append('\n');
+            sb.append("CH-"+(i+1)+": "+getChair(i));
+            sb.append("  ");
         }
         return sb.toString();
     }
 
-    public static void main(String[] args) {
-        var model = new GameModel();
-        for(int i=0;i<14;i++){
-            model.place(i);
+    /**
+     * clone fuggveny.
+     * @return <code>copy</code>.
+     */
+    public GameModel clone() {
+        GameModel copy = null;
+        try {
+            copy = (GameModel) super.clone();
+        } catch (CloneNotSupportedException e) {
         }
-        System.out.println(model);
+        copy.chairs = new ReadOnlyObjectWrapper[14];
+        for (int i = 0; i < chairs.length; ++i) {
+            copy.chairs[i] = chairs.clone()[i];
+        }
+        return copy;
     }
+
+
 }
