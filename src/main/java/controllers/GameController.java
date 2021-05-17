@@ -177,12 +177,7 @@ public class GameController {
      */
     @FXML
     public void finishGame(ActionEvent actionEvent) throws IOException {
-        if(!gameState.isFinished()){
-            results.DataHandler.insertResults(player1, player2, winner, wonAs, steps);
-        }
-        else{
-            results.DataHandler.insertResults(player1, player2, winner, wonAs, steps);
-        }
+        results.DataHandler.insertResults(player1, player2, winner, wonAs, steps);
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/Finished.fxml"));
         Parent root = fxmlLoader.load();
         Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();

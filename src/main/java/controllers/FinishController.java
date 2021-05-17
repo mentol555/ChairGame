@@ -51,7 +51,7 @@ public class FinishController {
             list.add(tmp);
         }
         toplistview.getItems().setAll(list);
-        System.out.println(list.size());
+
     }
 
     /**
