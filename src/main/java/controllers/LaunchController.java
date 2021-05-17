@@ -44,7 +44,7 @@ public class LaunchController {
      * Error dobo fuggveny.
      */
     private void error(){
-        error.setText("Please the a usernames!");
+        error.setText("Please the usernames!");
     }
 
     /**
