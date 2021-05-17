@@ -6,7 +6,10 @@
     <artifactId>ChairGame</artifactId>
     <version>1.0</version>
     <packaging>jar</packaging>
-    <description></description>
+    <description>A ChairGame egy szekre leultetos ketszemelyes jatek, mely grafikus felhasznaloi felulettel es adatbaziskezelessel is rendelkezik.
+    Koronkent valtogatjak egymast a jatekosok, az elso szamu a lanyokat, a masodik szamu pedig a fiukat ulteti le ugy, hogy egy fiu es egy lany nem
+        ulhet kozvetlenul egymas melle. Az utoljara lepni tudo jatekos nyer.
+    </description>
     <developers>
         <developer>
             <name>Hosszú Szilárd József</name>
@@ -21,8 +24,8 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.build.outputEncoding>UTF-8</project.build.outputEncoding>
-        <maven.compiler.source>16</maven.compiler.source>
-        <maven.compiler.target>16</maven.compiler.target>
+        <maven.compiler.source>16.0.1</maven.compiler.source>
+        <maven.compiler.target>16.0.1</maven.compiler.target>
         <exec.mainClass>main.Main</exec.mainClass>
         <javafx.version>16</javafx.version>
         <junit.jupiter.version>5.7.1</junit.jupiter.version>
@@ -100,7 +103,6 @@
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>3.8.1</version>
                 <configuration>
-                    <compilerArgs>--enable-preview</compilerArgs>
                     <source>16</source>
                     <target>16</target>
                 </configuration>
