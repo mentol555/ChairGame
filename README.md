@@ -5,7 +5,7 @@ Az első játékos mindig a lányokat ülteti, mig a második mindig a fiúkat.
 
 A program elinditásához az alábbi parancsok szükségesek:
 - mvn package
-- java -jar --enable-preview ./target/ChairGame-1.0.jar
+- java -jar ./target/ChairGame-1.0.jar
 
 A projekt Linuxon készült, Java 16 használatával.
 
